@@ -30,15 +30,24 @@ var userName = 'Jun Hee Lee';
 var userAge = 25;
 var userLocation = 'Seoul, Korea';
 // for dynamic data expression
+
+function getLocation(location){
+    if (location){
+        return location;
+    } else {
+        return 'Unknown';
+    }
+}
+
 var template2 = (
     <div>
         <h1> {user.name.toUpperCase() + '!'} </h1>
         <p> * Age : {user.age} </p>
-        <p> * Location : {user.location} </p>
+        <p> * Location : {getLocation(user.location)} </p>
     </div>
 );
 
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot); // render 'template' contents in 'appRoot' element
+ReactDOM.render(template2, appRoot); // render 'template' contents in 'appRoot' element

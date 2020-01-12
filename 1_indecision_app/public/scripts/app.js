@@ -50,6 +50,15 @@ var userName = 'Jun Hee Lee';
 var userAge = 25;
 var userLocation = 'Seoul, Korea';
 // for dynamic data expression
+
+function getLocation(location) {
+    if (location) {
+        return location;
+    } else {
+        return 'Unknown';
+    }
+}
+
 var template2 = React.createElement(
     'div',
     null,
@@ -71,11 +80,11 @@ var template2 = React.createElement(
         'p',
         null,
         ' * Location : ',
-        user.location,
+        getLocation(user.location),
         ' '
     )
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot); // render 'template' contents in 'appRoot' element
+ReactDOM.render(template2, appRoot); // render 'template' contents in 'appRoot' element

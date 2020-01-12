@@ -5,24 +5,36 @@
 console.log('App.js is running!');
 
 var app = {
-    title: React.createElement(
-        'h1',
-        null,
-        ' Indecision App '
-    ),
-    subtitle: React.createElement(
-        'p',
-        null,
-        'This is some info'
-    )
+    title: 'Indecision App',
+    subtitle: 'Put your life in the hands of a computer',
+    options: ['One', 'Two']
 };
 
 // JSX - Javascript XML
 var template = React.createElement(
     'div',
     null,
-    app.title,
-    app.subtitle,
+    React.createElement(
+        'h1',
+        null,
+        ' ',
+        app.title,
+        ' '
+    ),
+    app.subtitle && React.createElement(
+        'p',
+        null,
+        ' ',
+        app.subtitle,
+        ' '
+    ),
+    React.createElement(
+        'p',
+        null,
+        ' ',
+        app.options.length > 0 ? 'Here are your options' : 'No options',
+        ' '
+    ),
     React.createElement(
         'ol',
         null,
@@ -53,10 +65,14 @@ var userLocation = 'Seoul, Korea';
 
 function getLocation(location) {
     if (location) {
-        return location;
-    } else {
-        return 'Unknown';
-    }
+        return React.createElement(
+            'p',
+            null,
+            ' * Location : ',
+            location,
+            ' '
+        );
+    } // else, returns 'undefined'
 }
 
 var template2 = React.createElement(
@@ -66,25 +82,19 @@ var template2 = React.createElement(
         'h1',
         null,
         ' ',
-        user.name.toUpperCase() + '!',
+        user.name ? user.name : 'Anonymous',
         ' '
     ),
-    React.createElement(
+    user.age && user.age >= 18 && React.createElement(
         'p',
         null,
         ' * Age : ',
         user.age,
         ' '
     ),
-    React.createElement(
-        'p',
-        null,
-        ' * Location : ',
-        getLocation(user.location),
-        ' '
-    )
+    getLocation(user.location)
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template2, appRoot); // render 'template' contents in 'appRoot' element
+ReactDOM.render(template, appRoot); // render 'template' contents in 'appRoot' element

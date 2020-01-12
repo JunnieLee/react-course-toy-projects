@@ -3,20 +3,23 @@
 console.log('App.js is running!');
 
 var app = {
-    title : <h1> Indecision App </h1>,
-    subtitle : <p>This is some info</p>
+    title : 'Indecision App',
+    subtitle : 'Put your life in the hands of a computer',
+    options : ['One', 'Two']
 };
 
 // JSX - Javascript XML
 var template = (
     <div>
-        {app.title}
-        {app.subtitle}
+        <h1> {app.title} </h1>
+        {app.subtitle && (<p> {app.subtitle} </p>)}
+        <p> { app.options.length > 0 ? 'Here are your options': 'No options' } </p>
         <ol>
             <li>Item one</li>
             <li>Item two</li>
         </ol>
-    </div>// should be wrapped in div
+
+    </div> // should be wrapped in div
 );
 
 
@@ -32,22 +35,20 @@ var userLocation = 'Seoul, Korea';
 // for dynamic data expression
 
 function getLocation(location){
-    if (location){
-        return location;
-    } else {
-        return 'Unknown';
-    }
+    if (location) {
+        return <p> * Location : {location} </p>;
+    } // else, returns 'undefined'
 }
 
 var template2 = (
     <div>
-        <h1> {user.name.toUpperCase() + '!'} </h1>
-        <p> * Age : {user.age} </p>
-        <p> * Location : {getLocation(user.location)} </p>
+        <h1> {user.name? user.name : 'Anonymous'} </h1>
+        { (user.age && user.age >= 18) && <p> * Age : {user.age} </p> }
+        { getLocation(user.location) }
     </div>
 );
 
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template2, appRoot); // render 'template' contents in 'appRoot' element
+ReactDOM.render(template, appRoot); // render 'template' contents in 'appRoot' element

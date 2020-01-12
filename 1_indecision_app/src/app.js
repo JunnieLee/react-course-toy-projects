@@ -3,7 +3,26 @@
 console.log('App.js is running!');
 
 // JSX - Javascript XML
-var template  = <h1> Indecision App </h1>;
+var template = (
+    <div>
+        <h1> Indecision App </h1>
+        <p>This is some info</p>
+        <ol>
+            <li>Item one</li>
+            <li>Item two</li>
+        </ol>
+    </div>// should be wrapped in div
+);
+
+var template2 = (
+    <div>
+        <h1> Jun Hee Lee </h1>
+        <p> * Age : 25 </p>
+        <p> * Location : Seoul, Korea </p>
+    </div>
+);
+
+
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot); // render 'template' contents in 'appRoot' element
+ReactDOM.render(template2, appRoot); // render 'template' contents in 'appRoot' element

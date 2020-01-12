@@ -4,20 +4,25 @@
 // 그 compile된 내용이 scripts 안에 있는 app.js파일로 전달될것임
 console.log('App.js is running!');
 
-// JSX - Javascript XML
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
+var app = {
+    title: React.createElement(
         'h1',
         null,
         ' Indecision App '
     ),
-    React.createElement(
+    subtitle: React.createElement(
         'p',
         null,
         'This is some info'
-    ),
+    )
+};
+
+// JSX - Javascript XML
+var template = React.createElement(
+    'div',
+    null,
+    app.title,
+    app.subtitle,
     React.createElement(
         'ol',
         null,
@@ -35,26 +40,42 @@ var template = React.createElement(
 ) // should be wrapped in div
 ;
 
+var user = {
+    name: 'Jun Hee Lee',
+    age: 25,
+    location: 'Seoul, Korea'
+};
+
+var userName = 'Jun Hee Lee';
+var userAge = 25;
+var userLocation = 'Seoul, Korea';
+// for dynamic data expression
 var template2 = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        ' Jun Hee Lee '
+        ' ',
+        user.name.toUpperCase() + '!',
+        ' '
     ),
     React.createElement(
         'p',
         null,
-        ' * Age : 25 '
+        ' * Age : ',
+        user.age,
+        ' '
     ),
     React.createElement(
         'p',
         null,
-        ' * Location : Seoul, Korea '
+        ' * Location : ',
+        user.location,
+        ' '
     )
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template2, appRoot); // render 'template' contents in 'appRoot' element
+ReactDOM.render(template, appRoot); // render 'template' contents in 'appRoot' element

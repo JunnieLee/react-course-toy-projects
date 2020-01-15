@@ -1,100 +1,27 @@
 'use strict';
 
-// src 아래에 있는 이 app.js 파일이 babel을 통해서 compile된 다음에
-// 그 compile된 내용이 scripts 안에 있는 app.js파일로 전달될것임
-console.log('App.js is running!');
-
-var app = {
-    title: 'Indecision App',
-    subtitle: 'Put your life in the hands of a computer',
-    options: ['One', 'Two']
+var square = function square(x) {
+    return x * x;
 };
 
-// JSX - Javascript XML
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        ' ',
-        app.title,
-        ' '
-    ),
-    app.subtitle && React.createElement(
-        'p',
-        null,
-        ' ',
-        app.subtitle,
-        ' '
-    ),
-    React.createElement(
-        'p',
-        null,
-        ' ',
-        app.options.length > 0 ? 'Here are your options' : 'No options',
-        ' '
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'Item one'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'Item two'
-        )
-    )
-) // should be wrapped in div
-;
+// function square(x){
+// return x*x;
+// } --> 이렇게 해도 똑같음!
 
-var user = {
-    name: 'Jun Hee Lee',
-    age: 25,
-    location: 'Seoul, Korea'
+var squareArrow = function squareArrow(x) {
+    return x * x;
 };
 
-var userName = 'Jun Hee Lee';
-var userAge = 25;
-var userLocation = 'Seoul, Korea';
-// for dynamic data expression
+var squareArrow2 = function squareArrow2(x) {
+    return x * x;
+};
+// when returning a single expression, it's better to use arrow function syntax.
 
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            ' * Location : ',
-            location,
-            ' '
-        );
-    } // else, returns 'undefined'
-}
+console.log(square(8));
+console.log(squareArrow(8));
+console.log(squareArrow2(8));
 
-var template2 = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        ' ',
-        user.name ? user.name : 'Anonymous',
-        ' '
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        ' * Age : ',
-        user.age,
-        ' '
-    ),
-    getLocation(user.location)
-);
-
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot); // render 'template' contents in 'appRoot' element
+var getFirstName = function getFirstName(fullName) {
+    return fullName.split(' ')[0];
+};
+console.log(getFirstName('Junnie Lee'));

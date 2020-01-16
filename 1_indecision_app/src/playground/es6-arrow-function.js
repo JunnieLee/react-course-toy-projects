@@ -37,23 +37,25 @@ console.log(add(55,1,1001));
 const user = {
     name: 'Andrew',
     cities: ['Philadelphia', 'New York', 'Dublin'],
-    printPlacesLived: function (){
-        console.log(this.name);
-        console.log(this.cities);
-
-        // this.cities.forEach(function (city){
-        //    console.log(this.name + ' has lived in ' + city); --> this로 접근불가
-        //     --> gets a Type Error : Cannot read property 'name' of undefined
-        //});
-        // 접근하고 싶으면,
-        // 위에 const that = this; 이런식으로 하나 변수 잡아주고
-        // 그 뒤부터 계속 that.name 과 같이 접근하면 됨! --> 이건 오래된 work-around 방식..
-        // 근데 arrow function을 이용하면 이렇게 하지 않아도됨!!
+    printPlacesLived(){
+        return this.cities.map((city) => this.name + ' has lived in '+ city);
     }
 };
 
 user.printPlacesLived();
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+// mini-challenge area
+const multiplier = {
+    numbers: [10,20,30],
+    multiplyBy : 2,
+    multiply(){
+        return this.numbers.map((number)=> number * this.multiplyBy );
+    }
+};
+
+console.log(multiplier.multiply());
 
 
 

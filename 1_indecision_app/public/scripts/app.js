@@ -99,43 +99,53 @@ var template2 = React.createElement(
 
 var count = 0; // changable variable
 var addOne = function addOne() {
+    count++;
     console.log('addOne');
+    renderCounterApp();
 };
 var minusOne = function minusOne() {
+    count--;
     console.log('minusOne');
+    renderCounterApp();
 };
 var reset = function reset() {
+    count = 0;
     console.log('reset');
+    renderCounterApp();
 };
-
-var template3 = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'Count : ',
-        count
-    ),
-    React.createElement(
-        'button',
-        { onClick: addOne },
-        ' +1 '
-    ),
-    React.createElement(
-        'button',
-        { onClick: minusOne },
-        ' -1 '
-    ),
-    React.createElement(
-        'button',
-        { onClick: reset },
-        ' reset '
-    )
-);
-
-console.log(template3);
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template3, appRoot); // render 'template' contents in 'appRoot' element
+var renderCounterApp = function renderCounterApp() {
+    // we're later gonna do this by react components
+    // re-rendering everytime like this is extremely inefficient...
+    var template3 = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Count : ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            ' +1 '
+        ),
+        React.createElement(
+            'button',
+            { onClick: minusOne },
+            ' -1 '
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            ' reset '
+        )
+    );
+
+    ReactDOM.render(template3, appRoot);
+};
+
+renderCounterApp();

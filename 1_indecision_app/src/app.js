@@ -53,26 +53,36 @@ const template2 = (
 
 let count = 0; // changable variable
 const addOne = () => {
-  console.log('addOne');
+    count++;
+    console.log('addOne');
+    renderCounterApp();
 };
 const minusOne = () => {
-  console.log('minusOne');
+    count--;
+    console.log('minusOne');
+    renderCounterApp();
 };
 const reset = () => {
+    count = 0;
     console.log('reset');
+    renderCounterApp();
 };
-
-const template3 = (
-    <div>
-        <h1>Count : {count}</h1>
-        <button onClick={addOne}> +1 </button>
-        <button onClick={minusOne}> -1 </button>
-        <button onClick={reset}> reset </button>
-    </div>
-);
-
-console.log(template3)
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(template3, appRoot); // render 'template' contents in 'appRoot' element
+const renderCounterApp = () => {
+    // we're later gonna do this by react components
+    // re-rendering everytime like this is extremely inefficient...
+    const template3 = (
+        <div>
+            <h1>Count : {count}</h1>
+            <button onClick={addOne}> +1 </button>
+            <button onClick={minusOne}> -1 </button>
+            <button onClick={reset}> reset </button>
+        </div>
+    );
+
+    ReactDOM.render(template3, appRoot);
+}
+
+renderCounterApp();

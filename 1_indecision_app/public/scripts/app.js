@@ -1,72 +1,141 @@
 'use strict';
 
-var square = function square(x) {
-    return x * x;
+// src 아래에 있는 이 app.js 파일이 babel을 통해서 compile된 다음에
+// 그 compile된 내용이 scripts 안에 있는 app.js파일로 전달될것임
+console.log('App.js is running!');
+
+var app = {
+    title: 'Indecision App',
+    subtitle: 'Put your life in the hands of a computer',
+    options: ['One', 'Two']
 };
 
-// function square(x){
-// return x*x;
-// } --> 이렇게 해도 똑같음!
+// JSX - Javascript XML
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        ' ',
+        app.title,
+        ' '
+    ),
+    app.subtitle && React.createElement(
+        'p',
+        null,
+        ' ',
+        app.subtitle,
+        ' '
+    ),
+    React.createElement(
+        'p',
+        null,
+        ' ',
+        app.options.length > 0 ? 'Here are your options' : 'No options',
+        ' '
+    ),
+    React.createElement(
+        'ol',
+        null,
+        React.createElement(
+            'li',
+            null,
+            'Item one'
+        ),
+        React.createElement(
+            'li',
+            null,
+            'Item two'
+        )
+    )
+) // should be wrapped in div
+;
 
-var squareArrow = function squareArrow(x) {
-    return x * x;
-};
-
-var squareArrow2 = function squareArrow2(x) {
-    return x * x;
-};
-// when returning a single expression, it's better to use arrow function syntax.
-
-// console.log(square(8));
-// console.log(squareArrow(8));
-// console.log(squareArrow2(8));
-
-var getFirstName = function getFirstName(fullName) {
-    return fullName.split(' ')[0];
-};
-// console.log(getFirstName('Junnie Lee'));
-
-
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-
-// arguments object - no longer bound with arrow functions
-// ES6 의 arrow function 문법을 이용할땐 argumets object에 접근할 수 없다!
-var add = function add(a, b) {
-    // console.log(arguments); --> this would rise an error
-    return a + b;
-};
-console.log(add(55, 1, 1001));
-
-// this keyword - no longer bound
 var user = {
-    name: 'Andrew',
-    cities: ['Philadelphia', 'New York', 'Dublin'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-    }
+    name: 'Jun Hee Lee',
+    age: 25,
+    location: 'Seoul, Korea'
 };
 
-user.printPlacesLived();
+var userName = 'Jun Hee Lee';
+var userAge = 25;
+var userLocation = 'Seoul, Korea';
+// for dynamic data expression
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            'p',
+            null,
+            ' * Location : ',
+            location,
+            ' '
+        );
+    } // else, returns 'undefined'
+}
 
-// mini-challenge area
-var multiplier = {
-    numbers: [10, 20, 30],
-    multiplyBy: 2,
-    multiply: function multiply() {
-        var _this2 = this;
+var template2 = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        ' ',
+        user.name ? user.name : 'Anonymous',
+        ' '
+    ),
+    user.age && user.age >= 18 && React.createElement(
+        'p',
+        null,
+        ' * Age : ',
+        user.age,
+        ' '
+    ),
+    getLocation(user.location)
+);
 
-        return this.numbers.map(function (number) {
-            return number * _this2.multiplyBy;
-        });
-    }
+////////////////////////////////////////////////////////////////////////////
+
+var count = 0; // changable variable
+var addOne = function addOne() {
+    console.log('addOne');
+};
+var minusOne = function minusOne() {
+    console.log('minusOne');
+};
+var reset = function reset() {
+    console.log('reset');
 };
 
-console.log(multiplier.multiply());
+var template3 = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        'Count : ',
+        count
+    ),
+    React.createElement(
+        'button',
+        { onClick: addOne },
+        ' +1 '
+    ),
+    React.createElement(
+        'button',
+        { onClick: minusOne },
+        ' -1 '
+    ),
+    React.createElement(
+        'button',
+        { onClick: reset },
+        ' reset '
+    )
+);
+
+console.log(template3);
+
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(template3, appRoot); // render 'template' contents in 'appRoot' element

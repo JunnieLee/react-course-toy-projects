@@ -49,6 +49,30 @@ const template2 = (
 );
 
 
+////////////////////////////////////////////////////////////////////////////
+
+let count = 0; // changable variable
+const addOne = () => {
+  console.log('addOne');
+};
+const minusOne = () => {
+  console.log('minusOne');
+};
+const reset = () => {
+    console.log('reset');
+};
+
+const template3 = (
+    <div>
+        <h1>Count : {count}</h1>
+        <button onClick={addOne}> +1 </button>
+        <button onClick={minusOne}> -1 </button>
+        <button onClick={reset}> reset </button>
+    </div>
+);
+
+console.log(template3)
+
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot); // render 'template' contents in 'appRoot' element
+ReactDOM.render(template3, appRoot); // render 'template' contents in 'appRoot' element
